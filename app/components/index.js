@@ -8,6 +8,6 @@ import ReactDOM from 'react-dom';
 import ImageCarousel from './ImageCarousel';
 
 ReactDOM.render(
-  <ImageCarousel />,
+  <ImageCarousel images={ [ 'test1', 'test2', 'test3' ] }/>,
   document.getElementById('app')
 );
