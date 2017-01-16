@@ -47,6 +47,11 @@ const common = {
         loader: process.env.NODE_ENV !== 'production' ?
           'style!css!sass' : ExtractTextPlugin.extract('style', 'css!sass'),
         include: PATHS.stylesheets
+      },
+      { // Transfer static files to build
+        test: /\.png$/,
+        loader: 'file?name=[path][name].[ext]',
+        include: PATHS.images
       }
     ]
   }

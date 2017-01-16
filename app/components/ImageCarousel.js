@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageSwitcher from './ImageSwitcher';
 
 class ImageCarousel extends React.Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class ImageCarousel extends React.Component {
           })
         }
         </ul>
+        <ImageSwitcher side="prev"/>
+        <ImageSwitcher side="next"/>
       </div>
     )
   }

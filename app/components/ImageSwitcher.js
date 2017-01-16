@@ -1,0 +1,9 @@
+import React from 'react';
+
+// Button used for navigating the ImageCarousel
+// Input prop 'side' must be either "left" or "right"
+export default ({ side }) => (
+  <div className={`switcher ${side}`}>
+    <button className={`${side}`} />
+  </div>
+)

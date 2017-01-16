@@ -23,6 +23,7 @@
     "css-loader": "^0.25.x",
     "enzyme": "^2.6.0",
     "extract-text-webpack-plugin": "^1.0.x",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.x",
     "jsdom": "^9.9.1",
     "mocha": "^3.1.2",
@@ -34,6 +35,7 @@
     "sinon": "^1.17.7",
     "style-loader": "^0.13.x",
     "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.15.x",
     "webpack-validator": "^2.2.x"
   },
@@ -43,6 +45,7 @@
     "build": "webpack",
     "build-dev": "webpack --progress --colors",
     "build-watch": "webpack -w --progress --colors",
+    "hmr": "webpack-dev-server",
     "test": "mocha test/browser.js test/unit/*.spec.js",
     "test-watch": "mocha --watch test/browser.js test/unit/*.spec.js",
     "e2e": "node_modules/.bin/nightwatch --config test/nightwatch.conf.js"
