@@ -30,7 +30,6 @@ The first command will run Webpack, building the front end static files in devel
 
 - `npm run build-watch` - Build the front end app in "watch" mode, such that the build is re-run every time source files are updated and saved.
 - `npm run hmr` - Serve the front end app from a dev-server running on `localhost:3000` so that static files can be hot-swapped without reloading the app. API calls are proxied to `8080`, so you still need the Node server running.
-- `npm run dev` - Start the Node server in "watch" mode, so that it automatically restarts when source files are changed.
 
 ## Running in Prod
 
