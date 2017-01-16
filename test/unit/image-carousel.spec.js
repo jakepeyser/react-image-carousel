@@ -3,6 +3,13 @@ import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 
 import ImageCarousel from '../../app/components/ImageCarousel';
+import ImageSwitcher from '../../app/components/ImageSwitcher';
+
+const testImages = [
+  'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png',
+  'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png',
+  'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png'
+];
 
 describe('<ImageCarousel/>', function() {
 
@@ -36,18 +43,16 @@ describe('<ImageCarousel/>', function() {
     it('should have a determinate default state', function() {
       expect(wrapper.state().curSlide).to.be.defined;
       expect(wrapper.state().curSlide).to.equal(wrapper.props().initSlide);
+      expect(wrapper.state().carouselRotate).to.be.defined;
+      expect(wrapper.state().carouselRotate).to.equal('0%');
     });
   });
 
-  describe('prop passing', function() {
+  describe('realistic scenario', function() {
     let wrapper;
-    const initSlide = 2;
-    const images = [ 'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png',
-                     'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png',
-                     'http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png'
-                   ]
+    const initSlide = 1;
     before(function() {
-      wrapper = shallow(<ImageCarousel initSlide={ initSlide } images={ images }/>);
+      wrapper = shallow(<ImageCarousel initSlide={ initSlide } images={ testImages }/>);
     });
 
     it('should set the state according to input props', function() {
@@ -55,7 +60,7 @@ describe('<ImageCarousel/>', function() {
     });
 
     it('should render the image list items', function() {
-      expect(wrapper.find('.images').children()).to.have.length(images.length);
+      expect(wrapper.find('.images').children()).to.have.length(testImages.length);
 
       // Retrieve rendered list items
       const image = wrapper.find('li');
@@ -64,7 +69,27 @@ describe('<ImageCarousel/>', function() {
 
       // Check img child
       expect(image.node.props.children.type).to.equal('img');
-      expect(image.node.props.children.props.src).to.equal(images[0]);
+      expect(image.node.props.children.props.src).to.equal(testImages[0]);
+    });
+  });
+
+  describe('all possible arrow situations', function() {
+
+    it('should only have a next ImageSwitcher', function() {
+      let wrapper = shallow(<ImageCarousel initSlide={ 0 } images={ testImages }/>);
+      expect(wrapper.find(ImageSwitcher)).to.have.length(1);
+      expect(wrapper.find(ImageSwitcher).props().side).to.equal('next');
+    });
+
+    it('should have both a prev and next ImageSwitcher', function() {
+      let wrapper = shallow(<ImageCarousel initSlide={ 1 } images={ testImages }/>);
+      expect(wrapper.find(ImageSwitcher)).to.have.length(2);
+    });
+
+    it('should only have a prev ImageSwitcher', function() {
+      let wrapper = shallow(<ImageCarousel initSlide={ testImages.length - 1 } images={ testImages }/>);
+      expect(wrapper.find(ImageSwitcher)).to.have.length(1);
+      expect(wrapper.find(ImageSwitcher).props().side).to.equal('prev');
     });
   });
 });
