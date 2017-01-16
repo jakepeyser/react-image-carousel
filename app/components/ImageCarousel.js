@@ -53,6 +53,14 @@ class ImageCarousel extends React.Component {
           this.state.curSlide < this.props.images.length - 1 ?
             <ImageSwitcher side="next" switchFn={ this.changeSlides } /> : null
         }
+        <div className="indicators">
+        { // Indicator bubbles to note which image is active
+          this.props.images.map((val, idx) => {
+            const activeClass = idx === this.state.curSlide ? 'active' : '';
+            return <div className={`bubble ${activeClass}`}/>
+          })
+        }
+        </div>
       </div>
     )
   }
