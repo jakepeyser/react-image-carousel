@@ -92,4 +92,24 @@ describe('<ImageCarousel/>', function() {
       expect(wrapper.find(ImageSwitcher).props().side).to.equal('prev');
     });
   });
+
+  describe('image indicators', function() {
+    let wrapper;
+    let initSlide = 1;
+    before(function() {
+      wrapper = shallow(<ImageCarousel initSlide={ initSlide } images={ testImages }/>);
+    });
+
+    it('should have the right number of indicators', function() {
+      expect(wrapper.find('.bubble')).to.have.length(testImages.length);
+    });
+
+    it('should have the correct active indicator bubble', function() {
+      let activeClass;
+      wrapper.find('.bubble').nodes.forEach((bubble, idx) => {
+        activeClass = idx === initSlide ? 'active' : '';
+        expect(bubble.props.className).to.equal(`bubble ${activeClass}`);
+      })
+    });
+  });
 });
