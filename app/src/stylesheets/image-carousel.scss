@@ -4,6 +4,7 @@
   height: 300px;
   overflow: hidden;
   > .images {
+    transition: margin-left .4s linear;
     position: absolute;
     width: 300%;
     height: 100%;
@@ -26,7 +27,7 @@
       }
     }
   }
-  .switcher { // image switcher button
+  .switcher { // image switcher button wrapper
     transition: opacity .2s linear;
     position: absolute;
     opacity: 0;
@@ -46,7 +47,7 @@
     &.next {
       right: 0;
     }
-    > button {
+    > button { // switcher button
       @mixin arrow ($side, $offset) {
         transition: opacity .2s linear;
         opacity: .6;
