@@ -26,7 +26,10 @@ class ImageCarousel extends React.Component {
     return (
       <div className="image-carousel">
         <ul className="images"
-          style={{ marginLeft: this.state.carouselRotate }}>
+          style={{
+            width: `${this.props.images.length * 100}%`,
+            marginLeft: this.state.carouselRotate
+          }}>
         { // Nest all images inside list elements
           this.props.images.map((image, idx) => {
             let slideWidthPct = 100 / this.props.images.length;
@@ -36,7 +39,7 @@ class ImageCarousel extends React.Component {
                   width: `${slideWidthPct}%`,
                   left: `${(slideWidthPct * idx)}%`
                 }}>
-                <img src='http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png' />
+                <img src={ image } />
               </li>
             )
           })
